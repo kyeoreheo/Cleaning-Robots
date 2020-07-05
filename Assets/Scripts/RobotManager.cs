@@ -9,7 +9,8 @@ public class RobotManager : MonoBehaviour
     public Transform robot;
 
     private int robotCount = 0;
-    // Start is called before the first frame update
+    private List<Vector3> occupiedBlocks = new List<Vector3>();
+
     void Start()
     {
         Debug.Log(Random.RandomRange(0, boardSize));
@@ -19,16 +20,18 @@ public class RobotManager : MonoBehaviour
             {
                 if (robotCount < robotNumber)
                 {
-                    Transform copidRobot = Instantiate(robot, new Vector3(Random.RandomRange(0, boardSize), 1.5f, z), Quaternion.identity);
-                    copidRobot.parent = this.gameObject.transform;
-                    copidRobot.gameObject.name = "RB(" + x.ToString() + ", " + z.ToString() + ")";
-                    robotCount++;
-
+                    Vector3 targetBlock = new Vector3(Random.RandomRange(0, boardSize), 1.5f, z);
+                    if (!occupiedBlocks.Contains(targetBlock))
+                    {
+                        occupiedBlocks.Add(targetBlock);
+                        Transform copidRobot = Instantiate(robot, targetBlock, Quaternion.identity);
+                        copidRobot.parent = this.gameObject.transform;
+                        copidRobot.gameObject.name = "RB(" + x.ToString() + ", " + z.ToString() + ")";
+                        robotCount++;
+                    }
                 }
-
             }
         }
-
     }
 
     // Update is called once per frame
