@@ -20,13 +20,14 @@ public class RobotManager : MonoBehaviour
             {
                 if (robotCount < robotNumber)
                 {
-                    Vector3 targetBlock = new Vector3(Random.RandomRange(0, boardSize), 1.5f, z);
+                    int randomX = Random.RandomRange(0, boardSize);
+                    Vector3 targetBlock = new Vector3(randomX, 1.5f, z);
                     if (!occupiedBlocks.Contains(targetBlock))
                     {
                         occupiedBlocks.Add(targetBlock);
                         Transform copidRobot = Instantiate(robot, targetBlock, Quaternion.identity);
                         copidRobot.parent = this.gameObject.transform;
-                        copidRobot.gameObject.name = "RB(" + x.ToString() + ", " + z.ToString() + ")";
+                        copidRobot.gameObject.name = "RB(" + randomX.ToString() + ", " + z.ToString() + ")";
                         robotCount++;
                     }
                 }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\Robot.cs" />
     <Compile Include="Assets\Scripts\RobotManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Users/kyo/Documents/2019.3.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
