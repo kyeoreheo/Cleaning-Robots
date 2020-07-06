@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e117da1ffee9c427f837083fcb024ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotNumber: 20
+  robotNumber: 1
   boardSize: 16
   robot: {fileID: 6548010429648011131, guid: 32236808f43f941f1aabe5f806415267, type: 3}
 --- !u!1 &705507993

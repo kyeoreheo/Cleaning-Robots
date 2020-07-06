@@ -9,10 +9,11 @@ public class Robot : MonoBehaviour
     public float moveOnEverySecond;
 
     private List<string> directions = new List<string> { "front", "left", "back", "right" };
-    private bool shouldMove = true;
+    public bool shouldMove = true;
     private Vector3 destinationBlock;
 
     public float currentTimer = 0;
+    public float speed = 2;
     public string direction;
     void Start()
     {
@@ -26,12 +27,6 @@ public class Robot : MonoBehaviour
         this.gameObject.name = "RB(" + this.transform.position.x.ToString() + ", " + this.transform.position.z.ToString() + ")";
         Timer();
         MoveRandom();
-        if (currentTimer == 0)
-        {
-            shouldMove = true;
-            GenerateRandomDirection();
-            RotateRobot();
-        }
     }
 
     private void Timer()
@@ -40,6 +35,10 @@ public class Robot : MonoBehaviour
         if (currentTimer >= moveOnEverySecond)
         {
             currentTimer = 0;
+            shouldMove = true;
+            GenerateRandomDirection();
+            RotateRobot();
+
         }
     }
 
@@ -96,7 +95,7 @@ public class Robot : MonoBehaviour
         destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z + 1);
         if (this.transform.position.z <= destinationBlock.z && shouldMove)
         {
-            this.transform.position += Vector3.forward * Time.deltaTime;
+            this.transform.position += Vector3.forward * Time.deltaTime * speed;
         }
         else
         {
@@ -110,7 +109,7 @@ public class Robot : MonoBehaviour
         destinationBlock = new Vector3(currentPosition.x - 1, 1.5f, currentPosition.z);
         if (this.transform.position.x >= destinationBlock.x && shouldMove)
         {
-            this.transform.position += Vector3.left * Time.deltaTime;
+            this.transform.position += Vector3.left * Time.deltaTime * speed;
         }
         else
         {
@@ -124,7 +123,7 @@ public class Robot : MonoBehaviour
         destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z - 1);
         if (this.transform.position.z >= destinationBlock.z && shouldMove)
         {
-            this.transform.position += Vector3.back * Time.deltaTime;
+            this.transform.position += Vector3.back * Time.deltaTime * speed;
         }
         else
         {
@@ -138,7 +137,7 @@ public class Robot : MonoBehaviour
         destinationBlock = new Vector3(currentPosition.x + 1, 1.5f, currentPosition.z);
         if (this.transform.position.x <= destinationBlock.x && shouldMove)
         {
-            this.transform.position += Vector3.right * Time.deltaTime;
+            this.transform.position += Vector3.right * Time.deltaTime * speed;
         }
         else
         {
