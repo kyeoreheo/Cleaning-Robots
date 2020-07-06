@@ -13,7 +13,6 @@ public class RobotManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(Random.RandomRange(0, boardSize));
         for (int x = 0; x < boardSize; x++)
         {
             for (int z = 0; z < boardSize; z++)

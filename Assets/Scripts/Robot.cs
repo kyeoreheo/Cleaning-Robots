@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+    public int boardSize;
     public Vector3 currentPosition;
     public float moveOnEverySecond;
 
     private List<string> directions = new List<string> { "front", "left", "back", "right" };
     public bool shouldMove = true;
-    private Vector3 destinationBlock;
+    public Vector3 destinationBlock;
 
     public float currentTimer = 0;
     public float speed = 2;
@@ -25,8 +26,8 @@ public class Robot : MonoBehaviour
     void Update()
     {
         this.gameObject.name = "RB(" + this.transform.position.x.ToString() + ", " + this.transform.position.z.ToString() + ")";
-        Timer();
         MoveRandom();
+        Timer();
     }
 
     private void Timer()
@@ -34,11 +35,12 @@ public class Robot : MonoBehaviour
         currentTimer += Time.deltaTime;
         if (currentTimer >= moveOnEverySecond)
         {
+            this.gameObject.transform.position = destinationBlock;
+
             currentTimer = 0;
             shouldMove = true;
             GenerateRandomDirection();
             RotateRobot();
-
         }
     }
 
@@ -50,29 +52,39 @@ public class Robot : MonoBehaviour
 
     private void RotateRobot()
     {
-        if (direction == "fornt")
+        if (direction == "front")
         {
-            this.transform.rotation = Quaternion.AngleAxis(180.0f, Vector3.up);
-
+            this.transform.rotation = Quaternion.AngleAxis(0.0f, Vector3.up);
+            destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z + 1);
+            if (destinationBlock.z > boardSize - 1)
+                destinationBlock = new Vector3(destinationBlock.x, 1.5f, boardSize - 1);
         }
         else if (direction == "left")
         {
             this.transform.rotation = Quaternion.AngleAxis(-90.0f, Vector3.up);
+            destinationBlock = new Vector3(currentPosition.x - 1, 1.5f, currentPosition.z);
+            if (destinationBlock.x < 0)
+                destinationBlock = new Vector3(0, 1.5f, destinationBlock.z);
         }
         else if (direction == "back")
         {
             this.transform.rotation = Quaternion.AngleAxis(-180.0f, Vector3.up);
+            destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z - 1);
+            if (destinationBlock.z < 0)
+                destinationBlock = new Vector3(destinationBlock.x, 1.5f, 0);
         }
         else if (direction == "right")
         {
             this.transform.rotation = Quaternion.AngleAxis(90.0f, Vector3.up);
+            destinationBlock = new Vector3(currentPosition.x + 1, 1.5f, currentPosition.z);
+            if (destinationBlock.x > boardSize - 1)
+                destinationBlock = new Vector3(boardSize - 1, 1.5f, destinationBlock.z);
         }
-
     }
 
     public void MoveRandom()
     {
-        if (direction == "fornt")
+        if (direction == "front")
         {
             MoveForward();
         }
@@ -92,58 +104,70 @@ public class Robot : MonoBehaviour
 
     private void MoveForward()
     {
-        destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z + 1);
-        if (this.transform.position.z <= destinationBlock.z && shouldMove)
+        if (destinationBlock.z < boardSize && shouldMove)
         {
-            this.transform.position += Vector3.forward * Time.deltaTime * speed;
-        }
-        else
-        {
-            shouldMove = false;
-            currentPosition = this.gameObject.transform.position;
+            if (this.transform.position.z < destinationBlock.z)
+            {
+                this.transform.position += Vector3.forward * Time.deltaTime * speed;
+            }
+            else
+            {
+                shouldMove = false;
+                this.gameObject.transform.position = destinationBlock;
+                currentPosition = this.gameObject.transform.position;
+            }
         }
     }
 
     private void MoveLeft()
     {
-        destinationBlock = new Vector3(currentPosition.x - 1, 1.5f, currentPosition.z);
-        if (this.transform.position.x >= destinationBlock.x && shouldMove)
+        if (destinationBlock.x >= 0 && shouldMove)
         {
-            this.transform.position += Vector3.left * Time.deltaTime * speed;
-        }
-        else
-        {
-            shouldMove = false;
-            currentPosition = this.gameObject.transform.position;
+            if (this.transform.position.x > destinationBlock.x)
+            {
+                this.transform.position += Vector3.left * Time.deltaTime * speed;
+            }
+            else
+            {
+                shouldMove = false;
+                this.gameObject.transform.position = destinationBlock;
+                currentPosition = this.gameObject.transform.position;
+            }
         }
     }
 
     private void MoveBack()
     {
-        destinationBlock = new Vector3(currentPosition.x, 1.5f, currentPosition.z - 1);
-        if (this.transform.position.z >= destinationBlock.z && shouldMove)
+        if (destinationBlock.z >= 0 && shouldMove)
         {
-            this.transform.position += Vector3.back * Time.deltaTime * speed;
+            if (this.transform.position.z > destinationBlock.z)
+            {
+                this.transform.position += Vector3.back * Time.deltaTime * speed;
+            }
+            else
+            {
+                shouldMove = false;
+                this.gameObject.transform.position = destinationBlock;
+                currentPosition = this.gameObject.transform.position;
+            }
         }
-        else
-        {
-            shouldMove = false;
-            currentPosition = this.gameObject.transform.position;
-        }
+
     }
 
     private void MoveRight()
     {
-        destinationBlock = new Vector3(currentPosition.x + 1, 1.5f, currentPosition.z);
-        if (this.transform.position.x <= destinationBlock.x && shouldMove)
+        if (destinationBlock.x < boardSize && shouldMove)
         {
-            this.transform.position += Vector3.right * Time.deltaTime * speed;
-        }
-        else
-        {
-            shouldMove = false;
-            currentPosition = this.gameObject.transform.position;
+            if (this.transform.position.x < destinationBlock.x)
+            {
+                this.transform.position += Vector3.right * Time.deltaTime * speed;
+            }
+            else
+            {
+                shouldMove = false;
+                this.gameObject.transform.position = destinationBlock;
+                currentPosition = this.gameObject.transform.position;
+            }
         }
     }
-
 }
