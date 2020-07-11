@@ -165,9 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSystem: {fileID: 2060569968}
-  robotNumber: 20
+  numberOfRobots: 0
   boardSize: 16
   robot: {fileID: 6548010429648011131, guid: 32236808f43f941f1aabe5f806415267, type: 3}
+  occupiedBlocks: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 828461966}
+  - component: {fileID: 828461967}
   m_Layer: 0
   m_Name: _Golds
   m_TagString: Untagged
@@ -290,6 +292,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828461967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828461965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1abf687bca94f6cbf205cef618702c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSystem: {fileID: 2060569968}
+  numberOfGolds: 0
+  boardSize: 0
+  gold: {fileID: 430357342386666811, guid: 349334b13b020448d907aefcca3af423, type: 3}
+  occupiedBlocks: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c580dd62a0ff4389a1392fe0ccb4054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotManager_: {fileID: 397307604}
+  boardManager_: {fileID: 1447479849}
+  goldManager_: {fileID: 0}
   board_: []
   robots_: []
 --- !u!4 &2060569969

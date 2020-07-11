@@ -12,8 +12,7 @@ public class BoardManager : MonoBehaviour
 
     private bool isWhite = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void GenerateBoard()
     {
         for (int x = 0; x < boardSize; x++)
         {
@@ -36,14 +35,7 @@ public class BoardManager : MonoBehaviour
                 copiedBlock.gameObject.name = "(" + x.ToString() + ", " + z.ToString() + ")";
                 mainSystem.board_.Add(copiedBlock);
             }
-
         }
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
