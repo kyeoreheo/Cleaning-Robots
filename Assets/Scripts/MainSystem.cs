@@ -23,20 +23,52 @@ public class MainSystem : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < robots_.Count; i++)
+        for (int b = 0; b < board_.Count; b++)
         {
-            Vector3 position = robots_[i].GetComponent<Robot>().currentPosition;
-            for (int j = 0; j < board_.Count; j++)
+            board_[b].GetComponent<Block>().type = "None";
+
+            for (int r = 0; r < robots_.Count; r++)
             {
-                if (board_[j].transform.position.x == position.x && board_[j].transform.position.z == position.z)
+                Vector3 robotPosition = robots_[r].GetComponent<Robot>().currentPosition;
+                if (board_[b].transform.position.x == robotPosition.x && board_[b].transform.position.z == robotPosition.z)
                 {
-                    board_[j].GetComponent<Block>().type = "Robot";
+                    board_[b].GetComponent<Block>().type = "Robot";
                 }
-                else
+            }
+
+            for (int g = 0; g < golds_.Count; g++)
+            {
+                Vector3 goldPosition = golds_[g].GetComponent<Gold>().currentPosition;
+                if (board_[b].transform.position.x == goldPosition.x && board_[b].transform.position.z == goldPosition.z)
                 {
-                    board_[j].GetComponent<Block>().type = "None";
+                    board_[b].GetComponent<Block>().type = "Gold";
                 }
             }
         }
+
+
+        //for (int i = 0; i < robots_.Count; i++)
+        //{
+        //    Vector3 robotPosition = robots_[i].GetComponent<Robot>().currentPosition;
+        //    for (int j = 0; j < board_.Count; j++)
+        //    {
+        //        if (board_[j].transform.position.x == robotPosition.x && board_[j].transform.position.z == robotPosition.z)
+        //        {
+        //            board_[j].GetComponent<Block>().type = "Robot";
+        //        }
+        //    }
+        //}
+
+        //for (int i = 0; i < golds_.Count; i++)
+        //{
+        //    Vector3 goldPosition = golds_[i].GetComponent<Gold>().currentPosition;
+        //    for (int j = 0; j < board_.Count; j++)
+        //    {
+        //        if (board_[j].transform.position.x == goldPosition.x && board_[j].transform.position.z == goldPosition.z)
+        //        {
+        //            board_[j].GetComponent<Block>().type = "Gold";
+        //        }
+        //    }
+        //}
     }
 }

@@ -30,8 +30,6 @@ public class RobotManager : MonoBehaviour
                         copiedRobot.gameObject.name = "RB(" + randomX.ToString() + ", " + z.ToString() + ")";
                         mainSystem.robots_.Add(copiedRobot);
                         robotCount++;
-                        Debug.Log("HERE");
-
                     }
                 }
             }

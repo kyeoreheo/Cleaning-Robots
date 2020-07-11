@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{E8FF75A7-1E9E-8CD2-782A-F6685BBD4538}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RobotManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Robot.cs">
     <Files>
-      <File FileName="Assets/Scripts/BoardManager.cs" Line="13" Column="34" />
-      <File FileName="Assets/Scripts/RobotManager.cs" Line="11" Column="1" />
-      <File FileName="Assets/Scripts/MainSystem.cs" Line="8" Column="39" />
+      <File FileName="Assets/Scripts/BoardManager.cs" Line="37" Column="1" />
+      <File FileName="Assets/Scripts/RobotManager.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/MainSystem.cs" Line="29" Column="67" />
       <File FileName="Assets/Scripts/Block.cs" Line="5" Column="31" />
-      <File FileName="Assets/Scripts/Robot.cs" Line="21" Column="62" />
-      <File FileName="Assets/Scripts/GoldManager.cs" Line="18" Column="2" NotebookId="1" />
+      <File FileName="Assets/Scripts/Gold.cs" Line="12" Column="1" />
+      <File FileName="Assets/Scripts/GoldManager.cs" Line="39" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Robot.cs" Line="5" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
