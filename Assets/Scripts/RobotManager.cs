@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RobotManager : MonoBehaviour
 {
+    public MainSystem mainSystem;
     public int robotNumber;
     public int boardSize;
     public Transform robot;
@@ -24,9 +25,10 @@ public class RobotManager : MonoBehaviour
                     if (!occupiedBlocks.Contains(targetBlock))
                     {
                         occupiedBlocks.Add(targetBlock);
-                        Transform copidRobot = Instantiate(robot, targetBlock, Quaternion.identity);
-                        copidRobot.parent = this.gameObject.transform;
-                        copidRobot.gameObject.name = "RB(" + randomX.ToString() + ", " + z.ToString() + ")";
+                        Transform copiedRobot = Instantiate(robot, targetBlock, Quaternion.identity);
+                        copiedRobot.parent = this.gameObject.transform;
+                        copiedRobot.gameObject.name = "RB(" + randomX.ToString() + ", " + z.ToString() + ")";
+                        mainSystem.robots_.Add(copiedRobot);
                         robotCount++;
                     }
                 }

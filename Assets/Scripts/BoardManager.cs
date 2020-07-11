@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-
+    public MainSystem mainSystem;
     public int boardSize;
     public Transform block;
     public Material whiteMaterial;
@@ -29,11 +29,12 @@ public class BoardManager : MonoBehaviour
                 {
                     currentMaterial = blackMaterial;
                 }
-                Transform copidBlock = Instantiate(block, new Vector3(x, 0, z), Quaternion.identity);
-                copidBlock.parent = this.gameObject.transform;
-                copidBlock.gameObject.GetComponent<MeshRenderer>().material = currentMaterial;
+                Transform copiedBlock = Instantiate(block, new Vector3(x, 0, z), Quaternion.identity);
+                copiedBlock.parent = this.gameObject.transform;
+                copiedBlock.gameObject.GetComponent<MeshRenderer>().material = currentMaterial;
                 isWhite = !isWhite;
-                copidBlock.gameObject.name = "(" + x.ToString() + ", " + z.ToString() + ")";
+                copiedBlock.gameObject.name = "(" + x.ToString() + ", " + z.ToString() + ")";
+                mainSystem.board_.Add(copiedBlock);
             }
 
         }
